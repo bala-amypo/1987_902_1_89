@@ -1,4 +1,4 @@
-package com.example.backendproject.controller;
+package com.example.demo.controller;
 
 import com.example.backendproject.model.CategorizationRule;
 import com.example.backendproject.service.CategorizationRuleService;
