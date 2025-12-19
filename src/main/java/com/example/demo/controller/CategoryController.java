@@ -1,7 +1,7 @@
-package com.example.backendproject.controller;
+package com.example.demo.controller;
 
-import com.example.backendproject.model.Category;
-import com.example.backendproject.service.CategoryService;
+import com.example.demo.model.Category;
+import com.example.demo.service.CategoryService;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
