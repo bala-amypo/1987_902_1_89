@@ -1,7 +1,7 @@
-package com.example.backendproject.service.impl;
-import com.example.backendproject.model.Vendor;
-import com.example.backendproject.repository.VendorRepository;
-import com.example.backendproject.service.VendorService;
+package com.example.demo.service.impl;
+import com.example.demo.model.Vendor;
+import com.example.demo.repository.VendorRepository;
+import com.example.demo.service.VendorService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

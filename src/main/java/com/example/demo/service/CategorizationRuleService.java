@@ -1,4 +1,4 @@
-package com.example.backendproject.service;
+package com.example.demo.service;
 import com.example.backendproject.model.CategorizationRule;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.example.backendproject.service.impl;
-import com.example.backendproject.model.User;
-import com.example.backendproject.repository.UserRepository;
-import com.example.backendproject.service.UserService;
+package com.example.demo.service.impl;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
