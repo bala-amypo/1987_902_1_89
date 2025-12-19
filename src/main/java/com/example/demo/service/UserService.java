@@ -9,5 +9,5 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User getUserById(Long id);   // 🔴 MUST EXIST
+    User getUserById(Long id);   
 }

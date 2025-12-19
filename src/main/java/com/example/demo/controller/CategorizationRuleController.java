@@ -1,5 +1,6 @@
 package com.example.demo.controller;
-demo.model.CategorizationRule;
+
+import com.example.demo.model.CategorizationRule;
 import com.example.demo.service.CategorizationRuleService;
 
 import org.springframework.web.bind.annotation.*;
