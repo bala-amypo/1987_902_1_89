@@ -1,5 +1,5 @@
-package com.example.backendproject.repository;
-import com.example.backendproject.model.CategorizationRule;
+package com.exampledemobackendproject.repository;
+import com.example.demo.model.CategorizationRule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

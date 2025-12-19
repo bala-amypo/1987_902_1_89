@@ -1,5 +1,5 @@
-package com.example.backendproject.service;
-import com.example.backendproject.model.Vendor;
+package com.example.demo.service;
+import com.example.demo.model.Vendor;
 
 import java.util.List;
 

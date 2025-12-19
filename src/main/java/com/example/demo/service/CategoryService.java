@@ -1,5 +1,5 @@
-package com.example.backendproject.service;
-import com.example.backendproject.model.Category;
+package com.example.demo.service;
+import com.example.demo.model.Category;
 
 import java.util.List;
 

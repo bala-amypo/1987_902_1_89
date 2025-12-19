@@ -1,5 +1,5 @@
-package com.example.backendproject.repository;
-import com.example.backendproject.model.User;
+package com.example.demot.repository;
+import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
