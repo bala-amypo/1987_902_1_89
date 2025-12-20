@@ -1,7 +1,7 @@
-package com.example.backendproject.controller;
+package com.example.demo.controller;
 
-import com.example.backendproject.model.User;
-import com.example.backendproject.service.UserService;
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

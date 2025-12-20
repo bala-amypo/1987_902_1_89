@@ -1,7 +1,7 @@
-package com.example.backendproject.controller;
+package com.example.demo.controller;
 
-import com.example.backendproject.model.Invoice;
-import com.example.backendproject.service.InvoiceService;
+import com.example.demo.model.Invoice;
+import com.example.demo.service.InvoiceService;
 
 import org.springframework.web.bind.annotation.*;
 
