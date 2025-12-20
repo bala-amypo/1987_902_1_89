@@ -1,7 +1,7 @@
-package com.example.backendproject.controller;
+package com.example.demo.controller;
 
-import com.example.backendproject.model.CategorizationRule;
-import com.example.backendproject.service.CategorizationRuleService;
+import com.example.demo.model.CategorizationRule;
+import com.example.demo.service.CategorizationRuleService;
 
 import org.springframework.web.bind.annotation.*;
 
