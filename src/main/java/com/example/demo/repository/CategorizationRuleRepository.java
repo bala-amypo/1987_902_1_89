@@ -1,9 +1,18 @@
-package com.exampledemobackendproject.repository;
-import com.example.demo.model.CategorizationRule;
+package com.example.backendproject.repository;
+
+import com.example.backendproject.model.CategorizationRule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CategorizationRuleRepository extends JpaRepository<CategorizationRule, Long> {
-    List<CategorizationRule> findByCategoryId(Long categoryId);
+public interface CategorizationRuleRepository
+        extends JpaRepository<CategorizationRule, Long> {
+
+    @Query("""
+        SELECT r FROM CategorizationRule r
+        WHERE LOWER(:description) LIKE LOWER(CONCAT('%', r.keyword, '%'))
+        ORDER BY r.priority DESC
+    """)
+    List<CategorizationRule> findMatchingRulesByDescription(String description);
 }
