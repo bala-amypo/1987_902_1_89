@@ -1,6 +1,6 @@
-package com.example.backendproject.service;
+package com.example.demo.service;
 
-import com.example.backendproject.model.User;
+import com.example.demo.model.User;
 import java.util.List;
 
 public interface UserService {

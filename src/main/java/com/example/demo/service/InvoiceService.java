@@ -1,6 +1,6 @@
-package com.example.backendproject.service;
+package com.example.demo.service;
 
-import com.example.backendproject.model.Invoice;
+import com.example.demo.model.Invoice;
 import java.util.List;
 
 public interface InvoiceService {

@@ -1,6 +1,6 @@
-package com.example.backendproject.service;
+package com.example.demo.service;
 
-import com.example.backendproject.model.Category;
+import com.example.bdemo.model.Category;
 import java.util.List;
 
 public interface CategoryService {

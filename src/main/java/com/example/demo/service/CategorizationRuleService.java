@@ -1,6 +1,6 @@
-package com.example.backendproject.service;
+package com.example.demo.service;
 
-import com.example.backendproject.model.CategorizationRule;
+import com.example.demo.model.CategorizationRule;
 import java.util.List;
 
 public interface CategorizationRuleService {

@@ -1,7 +1,7 @@
-package com.example.backendproject.repository;
+package com.example.demo.repository;
 
-import com.example.backendproject.model.Invoice;
-import com.example.backendproject.model.User;
+import com.example.demo.model.Invoice;
+import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
