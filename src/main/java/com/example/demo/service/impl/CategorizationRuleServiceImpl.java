@@ -1,10 +1,10 @@
-package com.example.backendproject.service.impl;
+package com.example.demo.service.impl;
 
-import com.example.backendproject.exception.ResourceNotFoundException;
-import com.example.backendproject.model.CategorizationRule;
-import com.example.backendproject.model.Category;
-import com.example.backendproject.repository.*;
-import com.example.backendproject.service.CategorizationRuleService;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.CategorizationRule;
+import com.example.demo.model.Category;
+import com.example.demo.repository.*;
+import com.example.demo.service.CategorizationRuleService;
 
 import org.springframework.stereotype.Service;
 import java.util.List;

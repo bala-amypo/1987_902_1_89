@@ -1,14 +1,14 @@
-package com.example.backendproject.service.impl;
+package com.example.demo.service.impl;
 
-import com.example.backendproject.exception.ResourceNotFoundException;
-import com.example.backendproject.model.Category;
-import com.example.backendproject.model.CategorizationRule;
-import com.example.backendproject.model.Invoice;
-import com.example.backendproject.model.User;
-import com.example.backendproject.model.Vendor;
-import com.example.backendproject.repository.CategorizationRuleRepository;
-import com.example.backendproject.repository.InvoiceRepository;
-import com.example.backendproject.repository.UserRepository;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Category;
+import com.example.demo.model.CategorizationRule;
+import com.example.demo.model.Invoice;
+import com.example.demo.model.User;
+import com.example.demo.model.Vendor;
+import com.example.demo.repository.CategorizationRuleRepository;
+import com.example.demo.repository.InvoiceRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.backendproject.repository.VendorRepository;
 import com.example.backendproject.service.InvoiceService;
 import com.example.backendproject.util.InvoiceCategorizationEngine;
