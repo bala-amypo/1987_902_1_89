@@ -9,9 +9,9 @@ import com.example.demo.model.Vendor;
 import com.example.demo.repository.CategorizationRuleRepository;
 import com.example.demo.repository.InvoiceRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.backendproject.repository.VendorRepository;
-import com.example.backendproject.service.InvoiceService;
-import com.example.backendproject.util.InvoiceCategorizationEngine;
+import com.example.demo.repository.VendorRepository;
+import com.example.demo.service.InvoiceService;
+import com.example.demo.util.InvoiceCategorizationEngine;
 
 import org.springframework.stereotype.Service;
 
