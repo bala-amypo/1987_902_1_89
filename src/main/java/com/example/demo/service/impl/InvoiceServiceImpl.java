@@ -1,11 +1,18 @@
-package com.example.demo.service.impl;
-import com.example.demo.model.Invoice;
-import com.example.demo.model.User;
-import com.example.demo.model.Vendor;
-import com.example.demo.repository.InvoiceRepository;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.repository.VendorRepository;
-import com.example.demo.service.InvoiceService;
+package com.example.backendproject.service.impl;
+
+import com.example.backendproject.exception.ResourceNotFoundException;
+import com.example.backendproject.model.Category;
+import com.example.backendproject.model.CategorizationRule;
+import com.example.backendproject.model.Invoice;
+import com.example.backendproject.model.User;
+import com.example.backendproject.model.Vendor;
+import com.example.backendproject.repository.CategorizationRuleRepository;
+import com.example.backendproject.repository.InvoiceRepository;
+import com.example.backendproject.repository.UserRepository;
+import com.example.backendproject.repository.VendorRepository;
+import com.example.backendproject.service.InvoiceService;
+import com.example.backendproject.util.InvoiceCategorizationEngine;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,38 +23,76 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final UserRepository userRepository;
     private final VendorRepository vendorRepository;
+    private final CategorizationRuleRepository ruleRepository;
+    private final InvoiceCategorizationEngine engine;
 
-    public InvoiceServiceImpl(InvoiceRepository invoiceRepository,
-                              UserRepository userRepository,
-                              VendorRepository vendorRepository) {
+    public InvoiceServiceImpl(
+            InvoiceRepository invoiceRepository,
+            UserRepository userRepository,
+            VendorRepository vendorRepository,
+            CategorizationRuleRepository ruleRepository,
+            InvoiceCategorizationEngine engine
+    ) {
         this.invoiceRepository = invoiceRepository;
         this.userRepository = userRepository;
         this.vendorRepository = vendorRepository;
+        this.ruleRepository = ruleRepository;
+        this.engine = engine;
     }
 
     @Override
     public Invoice uploadInvoice(Long userId, Long vendorId, Invoice invoice) {
-        User user = userRepository.findById(userId).orElse(null);
-        Vendor vendor = vendorRepository.findById(vendorId).orElse(null);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+
+        Vendor vendor = vendorRepository.findById(vendorId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Vendor not found"));
+
+        if (invoice.getAmount() == null || invoice.getAmount() <= 0) {
+            throw new IllegalArgumentException("Amount must be positive");
+        }
 
         invoice.setUploadedBy(user);
         invoice.setVendor(vendor);
+        invoice.setCategory(null);
 
         return invoiceRepository.save(invoice);
     }
 
     @Override
     public Invoice categorizeInvoice(Long invoiceId) {
-        return invoiceRepository.findById(invoiceId).orElse(null);
+
+        Invoice invoice = getInvoice(invoiceId);
+
+        List<CategorizationRule> rules =
+                ruleRepository.findMatchingRulesByDescription(
+                        invoice.getDescription()
+                );
+
+        Category category = engine.determineCategory(invoice, rules);
+        invoice.setCategory(category);
+
+        return invoiceRepository.save(invoice);
     }
 
     @Override
     public List<Invoice> getInvoicesByUser(Long userId) {
-        return invoiceRepository.findByUploadedById(userId);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+
+        return invoiceRepository.findByUploadedBy(user);
     }
 
     @Override
     public Invoice getInvoice(Long invoiceId) {
-        return invoiceRepository.findById(invoiceId).orElse(null);
+
+        return invoiceRepository.findById(invoiceId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Invoice not found"));
     }
 }

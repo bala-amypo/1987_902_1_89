@@ -1,9 +1,11 @@
-package com.example.demo.service.impl;
-import com.example.demo.model.Category;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.service.CategoryService;
-import org.springframework.stereotype.Service;
+package com.example.backendproject.service.impl;
 
+import com.example.backendproject.exception.ResourceNotFoundException;
+import com.example.backendproject.model.Category;
+import com.example.backendproject.repository.CategoryRepository;
+import com.example.backendproject.service.CategoryService;
+
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
@@ -11,8 +13,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryServiceImpl(CategoryRepository repo) {
+        this.categoryRepository = repo;
     }
 
     @Override
@@ -22,7 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategory(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+        return categoryRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Category not found"));
     }
 
     @Override

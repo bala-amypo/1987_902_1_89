@@ -1,9 +1,11 @@
-package com.example.demo.service.impl;
-import com.example.demo.model.Vendor;
-import com.example.demo.repository.VendorRepository;
-import com.example.demo.service.VendorService;
-import org.springframework.stereotype.Service;
+package com.example.backendproject.service.impl;
 
+import com.example.backendproject.exception.ResourceNotFoundException;
+import com.example.backendproject.model.Vendor;
+import com.example.backendproject.repository.VendorRepository;
+import com.example.backendproject.service.VendorService;
+
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
@@ -11,8 +13,8 @@ public class VendorServiceImpl implements VendorService {
 
     private final VendorRepository vendorRepository;
 
-    public VendorServiceImpl(VendorRepository vendorRepository) {
-        this.vendorRepository = vendorRepository;
+    public VendorServiceImpl(VendorRepository repo) {
+        this.vendorRepository = repo;
     }
 
     @Override
@@ -22,7 +24,9 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public Vendor getVendor(Long vendorId) {
-        return vendorRepository.findById(vendorId).orElse(null);
+        return vendorRepository.findById(vendorId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Vendor not found"));
     }
 
     @Override
