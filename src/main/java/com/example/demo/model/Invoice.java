@@ -1,21 +1,11 @@
-package com.example.demo.model;
+package com.example.backendproject.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.PrePersist;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(
-    name = "invoices",
     uniqueConstraints = @UniqueConstraint(columnNames = {"vendor_id", "invoiceNumber"})
 )
 public class Invoice {
@@ -42,76 +32,47 @@ public class Invoice {
     private User uploadedBy;
 
     private LocalDateTime uploadedAt;
-    public Invoice() {
+
+    public Invoice() {}
+
+    @PrePersist
+    void onCreate() {
+        this.uploadedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
+    // Getters and Setters
+    public Long getId() { return id; }
 
-    public Vendor getVendor() {
-        return vendor;
-    }
+    public Vendor getVendor() { return vendor; }
+    public void setVendor(Vendor vendor) { this.vendor = vendor; }
 
-    public User getUploadedBy() {
-        return uploadedBy;
-    }
-
-    public String getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public LocalDate getInvoiceDate() {
-        return invoiceDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public LocalDateTime getUploadedAt() {
-        return uploadedAt;
-    }
-
-   
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
-
-    public void setUploadedBy(User uploadedBy) {
-        this.uploadedBy = uploadedBy;
-    }
-
+    public String getInvoiceNumber() { return invoiceNumber; }
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+    public Double getAmount() { return amount; }
+    public void setAmount(Double amount) { this.amount = amount; }
 
+    public LocalDate getInvoiceDate() { return invoiceDate; }
     public void setInvoiceDate(LocalDate invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 
+    public String getDescription() { return description; }
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public Category getCategory() { return category; }
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.uploadedAt = LocalDateTime.now();
+    public User getUploadedBy() { return uploadedBy; }
+    public void setUploadedBy(User uploadedBy) {
+        this.uploadedBy = uploadedBy;
     }
+
+    public LocalDateTime getUploadedAt() { return uploadedAt; }
 }
