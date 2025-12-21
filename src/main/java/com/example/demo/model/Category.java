@@ -18,7 +18,14 @@ public class Category {
 
     private LocalDateTime createdAt;
 
+    // Default constructor
     public Category() {}
+
+    // Constructor with all fields except id and createdAt
+    public Category(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.description = description;
+    }
 
     @PrePersist
     void onCreate() {
@@ -30,14 +37,11 @@ public class Category {
     public void setId(Long id) { this.id = id; }
 
     public String getCategoryName() { return categoryName; }
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 
     public String getDescription() { return description; }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

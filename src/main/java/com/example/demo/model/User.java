@@ -35,7 +35,17 @@ public class User {
     )
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
+    // Default constructor
     public User() {}
+
+    // Constructor with all fields except id and createdAt
+    public User(String fullName, String email, String password, String role, Set<Vendor> favoriteVendors) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.favoriteVendors = favoriteVendors != null ? favoriteVendors : new HashSet<>();
+    }
 
     @PrePersist
     void onCreate() {
@@ -59,10 +69,10 @@ public class User {
     public void setRole(String role) { this.role = role; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public Set<Vendor> getFavoriteVendors() { return favoriteVendors; }
     public void setFavoriteVendors(Set<Vendor> favoriteVendors) {
-        this.favoriteVendors = favoriteVendors;
+        this.favoriteVendors = favoriteVendors != null ? favoriteVendors : new HashSet<>();
     }
 }
-

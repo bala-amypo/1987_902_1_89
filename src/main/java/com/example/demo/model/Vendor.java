@@ -24,7 +24,16 @@ public class Vendor {
     @ManyToMany(mappedBy = "favoriteVendors")
     private Set<User> users = new HashSet<>();
 
+    // Default constructor
     public Vendor() {}
+
+    // Constructor with all fields except id and createdAt
+    public Vendor(String vendorName, String contactEmail, String address, Set<User> users) {
+        this.vendorName = vendorName;
+        this.contactEmail = contactEmail;
+        this.address = address;
+        this.users = users != null ? users : new HashSet<>();
+    }
 
     @PrePersist
     void onCreate() {
@@ -45,6 +54,8 @@ public class Vendor {
     public void setAddress(String address) { this.address = address; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public Set<User> getUsers() { return users; }
+    public void setUsers(Set<User> users) { this.users = users != null ? users : new HashSet<>(); }
 }
