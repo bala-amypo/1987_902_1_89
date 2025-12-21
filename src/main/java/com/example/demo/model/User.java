@@ -16,11 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String fullName;
 
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     private String role = "USER";
@@ -35,7 +37,6 @@ public class User {
     )
     private Set<Vendor> favoriteVendors = new HashSet<>();
 
-    // Default constructor
     public User() {}
 
     // Constructor for registration
@@ -46,14 +47,12 @@ public class User {
     }
 
     @PrePersist
-    void onCreate() {
+    private void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    // Getters and setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 

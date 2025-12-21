@@ -17,8 +17,9 @@ public class UserController {
 
     @PostMapping("/register")
     public User register(@RequestBody User user) {
-        // You can add validation here if needed
-        return userService.registerUser(user);
+        // Only fullName, email, and password are expected from the client
+        User newUser = new User(user.getFullName(), user.getEmail(), user.getPassword());
+        return userService.registerUser(newUser);
     }
 
     @GetMapping("/all")
