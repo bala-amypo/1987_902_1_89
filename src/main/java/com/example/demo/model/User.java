@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(
@@ -16,19 +17,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String fullName;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
     private String role = "USER";
 
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_favorite_vendors",
@@ -39,7 +39,6 @@ public class User {
 
     public User() {}
 
-    // Constructor for registration
     public User(String fullName, String email, String password) {
         this.fullName = fullName;
         this.email = email;
@@ -51,8 +50,10 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and setters
+    // GETTERS/SETTERS
+
     public Long getId() { return id; }
+
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 
