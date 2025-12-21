@@ -5,7 +5,6 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +13,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
+    public UserServiceImpl(UserRepository repo) {
         this.userRepository = repo;
-        this.passwordEncoder = encoder;
     }
 
     @Override
@@ -26,7 +23,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Email already in use");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // store password as is (plain text)
         return userRepository.save(user);
     }
 
