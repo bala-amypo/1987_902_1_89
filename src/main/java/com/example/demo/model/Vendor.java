@@ -24,10 +24,10 @@ public class Vendor {
     @ManyToMany(mappedBy = "favoriteVendors")
     private Set<User> users = new HashSet<>();
 
-    // Default constructor
+    
     public Vendor() {}
 
-    // Constructor with all fields except id and createdAt
+   
     public Vendor(String vendorName, String contactEmail, String address, Set<User> users) {
         this.vendorName = vendorName;
         this.contactEmail = contactEmail;
@@ -40,7 +40,7 @@ public class Vendor {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

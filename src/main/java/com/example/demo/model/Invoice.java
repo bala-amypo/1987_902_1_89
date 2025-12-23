@@ -33,10 +33,10 @@ public class Invoice {
 
     private LocalDateTime uploadedAt;
 
-    // Default constructor
+   
     public Invoice() {}
 
-    // Constructor with all fields except id and uploadedAt
+    
     public Invoice(Vendor vendor, String invoiceNumber, Double amount,
                    LocalDate invoiceDate, String description,
                    Category category, User uploadedBy) {
@@ -54,7 +54,7 @@ public class Invoice {
         this.uploadedAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
