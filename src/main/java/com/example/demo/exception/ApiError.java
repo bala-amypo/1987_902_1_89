@@ -23,7 +23,7 @@ public class ApiError {
         this.path = path;
     }
 
-    // GETTERS
+    
 
     public LocalDateTime getTimestamp() {
         return timestamp;

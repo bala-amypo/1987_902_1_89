@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Email already in use");
         }
-        // store password as is (plain text)
+       
         return userRepository.save(user);
     }
 
