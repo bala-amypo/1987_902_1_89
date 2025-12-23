@@ -20,10 +20,10 @@ public class CategorizationRule {
 
     private LocalDateTime createdAt;
 
-    // Default constructor
+    
     public CategorizationRule() {}
 
-    // Constructor with all fields except id and createdAt
+
     public CategorizationRule(Category category, String keyword, String matchType, Integer priority) {
         this.category = category;
         this.keyword = keyword;
@@ -36,7 +36,7 @@ public class CategorizationRule {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public Long getId() { return id; }
 
     public Category getCategory() { return category; }

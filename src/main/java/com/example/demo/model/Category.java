@@ -18,10 +18,10 @@ public class Category {
 
     private LocalDateTime createdAt;
 
-    // Default constructor
+   
     public Category() {}
 
-    // Constructor with all fields except id and createdAt
+    
     public Category(String categoryName, String description) {
         this.categoryName = categoryName;
         this.description = description;
