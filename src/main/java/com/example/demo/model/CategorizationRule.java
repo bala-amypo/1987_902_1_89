@@ -32,6 +32,10 @@ public class CategorizationRule {
         createdAt = LocalDateTime.now();
     }
     
+    public void prePersist() {
+        onCreate();
+    }
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
@@ -43,6 +47,10 @@ public class CategorizationRule {
     
     public MatchType getMatchType() { return matchType; }
     public void setMatchType(MatchType matchType) { this.matchType = matchType; }
+    
+    public void setMatchType(String matchType) {
+        this.matchType = MatchType.valueOf(matchType);
+    }
     
     public Integer getPriority() { return priority; }
     public void setPriority(Integer priority) { this.priority = priority; }
