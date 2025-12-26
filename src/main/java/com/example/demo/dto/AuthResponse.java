@@ -1,29 +1,32 @@
-package com.example.backendproject.dto;
+package com.example.demo.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+public class AuthResponse {
 
-public class AuthRequest {
-
-    @Email
-    @NotBlank
+    private String token;
+    private Long userId;
     private String email;
+    private String role;
 
-    @NotBlank
-    private String password;
-
-    public AuthRequest() {}
-
-    public AuthRequest(String email, String password) {
+    public AuthResponse(String token, Long userId, String email, String role) {
+        this.token = token;
+        this.userId = userId;
         this.email = email;
-        this.password = password;
+        this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRole() {
+        return role;
     }
 }
