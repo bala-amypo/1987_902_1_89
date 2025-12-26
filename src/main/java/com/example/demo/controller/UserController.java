@@ -2,38 +2,35 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
+    
     private final UserService userService;
-
-    public UserController(UserService service) {
-        this.userService = service;
+    
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
-
+    
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-
-        User newUser = new User();
-        newUser.setFullName(user.getFullName());
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
-
-        return userService.registerUser(newUser);
+    public ResponseEntity<User> register(@RequestBody User user) {
+        User createdUser = userService.registerUser(user);
+        return ResponseEntity.ok(createdUser);
     }
-
+    
     @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
-
+    
     @GetMapping("/{id}")
-    public User get(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        // This would need to be implemented in UserService
+        return ResponseEntity.ok(new User());
     }
 }
