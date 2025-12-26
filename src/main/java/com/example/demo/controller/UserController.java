@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -17,8 +18,12 @@ public class UserController {
 
     @PostMapping("/register")
     public User register(@RequestBody User user) {
-       
-        User newUser = new User(user.getFullName(), user.getEmail(), user.getPassword());
+
+        User newUser = new User();
+        newUser.setFullName(user.getFullName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
+
         return userService.registerUser(newUser);
     }
 
