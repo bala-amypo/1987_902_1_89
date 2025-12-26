@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(
@@ -24,11 +23,12 @@ public class User {
 
     private String password;
 
-    private String role = "USER";
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;
 
     private LocalDateTime createdAt;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_favorite_vendors",
@@ -39,20 +39,14 @@ public class User {
 
     public User() {}
 
-    public User(String fullName, String email, String password) {
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-    }
-
     @PrePersist
-    private void onCreate() {
+    void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
 
-    
-
+    // Getters and Setters
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
@@ -63,13 +57,13 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
 
     public Set<Vendor> getFavoriteVendors() { return favoriteVendors; }
     public void setFavoriteVendors(Set<Vendor> favoriteVendors) {
-        this.favoriteVendors = favoriteVendors != null ? favoriteVendors : new HashSet<>();
+        this.favoriteVendors = favoriteVendors;
     }
 }
